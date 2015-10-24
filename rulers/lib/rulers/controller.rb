@@ -1,4 +1,5 @@
 require 'erubis'
+require_relative 'file_model'
 
 def render(view_name, locals = {})
   filename = File.join "app", "views", controller_name,
@@ -16,6 +17,7 @@ end
 
 module Rulers
   class Controller
+    include Rulers::Model
     def initialize(env)
       @env = env end
       def env

@@ -4,7 +4,23 @@ class QuotesController < Rulers::Controller
   end
 
   def quote_1
-    quote_1 = Rulers::Model::FileModel.find(1)
+    quote_1 = FileModel.find(1)
     render :quote, :obj => quote_1
   end
+
+  def index
+    quotes = FileModel.all
+    render :index, :quotes => quotes
+  end
+
+  def new_quote
+    attrs = {
+      "submitter" => "Akshansh",
+      "quote" => "Live young, live free",
+      "attribution" => "John Lennon"
+    }
+    m = FileModel.create attrs
+    render :quote, :obj => m
+  end
+  
 end
